@@ -341,6 +341,7 @@ a.ccard { text-decoration: none; color: inherit; }
 .fab-sos { display: none; }
 
 @media (max-width: 640px) {
+  .strip { font-size: .72rem; padding: 4px 8px; line-height: 1.35; }
   .brand-text span { display: none; }
   .brand img { height: 28px; }
   .btn-exit .lbl { display: none; }
@@ -366,7 +367,7 @@ a.ccard { text-decoration: none; color: inherit; }
 </head>
 <body>
 <a class="skip" href="#main" id="skip">Saltar al contenido</a>
-<noscript><div style="padding:16px;background:#fdeeec;color:#8f1d17;font-family:sans-serif">Esta web necesita JavaScript. Si necesitas ayuda urgente llama al <b>112</b>. Si piensas en hacerte daño llama al <b>024</b>. Menores: Fundación ANAR <b>900 20 20 10</b>.</div></noscript>
+<noscript><div style="padding:16px;background:#fdeeec;color:#8f1d17;font-family:sans-serif">Esta web necesita JavaScript. Si necesitas ayuda urgente llama al <b>112</b>. Si piensas en hacerte daño llama al <b>024</b>. Violencia machista: <b>016</b>. Menores: Fundación ANAR <b>900 20 20 10</b>.</div></noscript>
 <div id="app"></div>
 
 <!-- =====================================================================
@@ -374,45 +375,39 @@ a.ccard { text-decoration: none; color: inherit; }
      ===================================================================== -->
 <script>
 /* ============================================================
-   CONFIGURACIÓN DEL CENTRO  ·  Edita solo este archivo
+   CONFIGURACIÓN DEL CENTRO  ·  Edita solo este bloque
    ------------------------------------------------------------
-   Rellena los datos entre comillas. Los campos que dejes vacíos
-   ('') aparecerán en la web como un recuadro "[Pendiente]" para
-   que se vea qué falta por completar.
-   No hace falta tocar ningún otro archivo.
+   Para añadir o quitar personas, copia o borra una línea
+   { name: '...', email: '...' } dentro de "people".
    ============================================================ */
 window.SCHOOL_CONFIG = {
   schoolName: 'Escuelas SJ',
 
-  // Departamento de Orientación
+  // Departamento de Orientación (únicas vías de contacto)
   orientacion: {
-    contactName: '',   // p. ej. 'Javier Calduch (orientador)'
-    email: '',         // p. ej. 'orientacion@tucolegio.es'
-    phone: '',         // opcional
-    location: '',      // p. ej. 'Edificio A, planta 1, despacho 12'
-    hours: ''          // p. ej. 'L-V de 9:00 a 14:00'
+    people: [
+      { name: 'Ximo Bosch Mossi', email: 'ximo.bosch@escuelassj.com' },
+      { name: 'Laura Muñoz Gabarda', email: 'laura.munoz@escuelassj.com' }
+    ],
+    location: 'En el Departamento de Orientación o por correo electrónico'
   },
 
   // Coordinación de Bienestar y Protección (LOPIVI)
   bienestar: {
-    contactName: '',
-    email: '',
-    phone: '',
-    location: '',
-    hours: ''
+    people: [
+      { name: 'Ximo Bosch Mossi', email: 'ximo.bosch@escuelassj.com' },
+      { name: 'Laura Muñoz Gabarda', email: 'laura.munoz@escuelassj.com' }
+    ],
+    location: 'En el Departamento de Orientación o por correo electrónico'
   },
 
-  // Pastoral / Voluntariado del centro (sección "Sentido y valores")
+  // Pastoral / Voluntariado (sección "Sentido y valores"). Opcional:
+  // si se deja vacío, no se muestra nada.
   pastoral: {
     contactName: '',
     email: '',
     location: ''
   },
-
-  // Enlace a un buzón o formulario del centro para pedir una cita o
-  // comunicar algo (Google Forms, Microsoft Forms, Teams...).
-  // Déjalo vacío si no tenéis.
-  buzonUrl: '',
 
   // Fecha de la última revisión de teléfonos y enlaces (se muestra al pie)
   lastReview: '2026-11'
@@ -478,7 +473,7 @@ window.I18N.es = {
     footerDisclaimer: 'Este espacio ofrece información orientativa y basada en evidencia científica. No sustituye la atención de un profesional sanitario o de la psicología. Si lo necesitas, pide ayuda: hacerlo es una habilidad, no una debilidad.',
     footerVerified: 'Teléfonos y enlaces revisados en:',
     footerBroken: '¿Algún enlace no funciona? Avisa al Departamento de Orientación.',
-    emergencyStrip: '¿Peligro inmediato? Llama al 112 · ¿Pensamientos de hacerte daño? Llama al 024',
+    emergencyStrip: '¿Peligro inmediato? Llama al 112 · ¿Pensamientos de hacerte daño? Llama al 024 · ¿Violencia machista? Llama al 016',
     skip: 'Saltar al contenido'
   },
 
@@ -510,7 +505,7 @@ window.I18N.es = {
     title: 'Ayuda ahora',
     calm: 'Has hecho bien en buscar ayuda. Respira. No estás solo ni sola.',
     groups: [
-      { title: 'Si tu vida o la de otra persona está en peligro ahora', lines: ['l112', 'l024'] },
+      { title: 'Números principales (24 h, gratis)', lines: ['l112', 'l024', 'l016'] },
       { title: 'Si necesitas hablar con alguien', lines: ['anar', 'esperanza'] },
       { title: 'Si estás en el colegio', school: true }
     ],
@@ -535,9 +530,9 @@ window.I18N.es = {
     title: 'Pedir ayuda',
     intro: 'Pedir ayuda no es exagerar ni molestar. Es una forma de cuidarte. Estos servicios son reales, gratuitos y confidenciales.',
     groups: [
-      { title: 'Emergencia ahora', icon: '🚨', lines: ['l112', 'l024'] },
+      { title: 'Números principales (24 h, gratis)', icon: '🚨', lines: ['l112', 'l024', 'l016'] },
       { title: 'Necesito hablar con alguien', icon: '💬', lines: ['anar', 'esperanza'] },
-      { title: 'Según lo que estoy viviendo', icon: '🧭', lines: ['acoso', 'incibe', 'l016', 'orienta', 'avalcab', 'pmd'] }
+      { title: 'Según lo que estoy viviendo', icon: '🧭', lines: ['acoso', 'incibe', 'orienta', 'avalcab', 'pmd'] }
     ],
     langNote: 'La mayoría de estos servicios atienden en castellano (muchos también en valenciano). El 112 atiende además en inglés, francés y alemán, y el 016 en 53 idiomas. Si el idioma te frena, alguien del colegio puede acompañarte a llamar.',
     schoolTitle: 'Dentro del colegio',
@@ -1081,7 +1076,7 @@ window.I18N.va = {
     footerDisclaimer: "Este espai oferix informació orientativa i basada en evidència científica. No substituïx l'atenció d'un professional sanitari o de la psicologia. Si ho necessites, demana ajuda: fer-ho és una habilitat, no una debilitat.",
     footerVerified: "Telèfons i enllaços revisats en data:",
     footerBroken: "Algun enllaç no funciona? Avisa el Departament d'Orientació.",
-    emergencyStrip: "Perill immediat? Telefona al 112 · Tens pensaments de fer-te mal? Telefona al 024",
+    emergencyStrip: "Perill immediat? Telefona al 112 · Tens pensaments de fer-te mal? Telefona al 024 · Violència masclista? Telefona al 016",
     skip: "Saltar al contingut"
   },
 
@@ -1113,7 +1108,7 @@ window.I18N.va = {
     title: "Ajuda ara",
     calm: "Has fet bé de buscar ajuda. Respira. No estàs sol ni sola.",
     groups: [
-      { title: "Si la teua vida o la d'una altra persona està en perill ara", lines: ['l112', 'l024'] },
+      { title: 'Números principals (24 h, gratuïts)', lines: ['l112', 'l024', 'l016'] },
       { title: "Si necessites parlar amb algú", lines: ['anar', 'esperanza'] },
       { title: "Si estàs al col·legi", school: true }
     ],
@@ -1138,9 +1133,9 @@ window.I18N.va = {
     title: "Demanar ajuda",
     intro: "Demanar ajuda no és exagerar ni molestar. És una manera de cuidar-te. Estos serveis són reals, gratuïts i confidencials.",
     groups: [
-      { title: "Emergència ara", icon: '🚨', lines: ['l112', 'l024'] },
+      { title: 'Números principals (24 h, gratuïts)', icon: '🚨', lines: ['l112', 'l024', 'l016'] },
       { title: "Necessite parlar amb algú", icon: '💬', lines: ['anar', 'esperanza'] },
-      { title: "Segons el que estic vivint", icon: '🧭', lines: ['acoso', 'incibe', 'l016', 'orienta', 'avalcab', 'pmd'] }
+      { title: "Segons el que estic vivint", icon: '🧭', lines: ['acoso', 'incibe', 'orienta', 'avalcab', 'pmd'] }
     ],
     langNote: "La majoria d'estos serveis atenen en castellà (molts també en valencià). El 112 atén, a més, en anglés, francés i alemany, i el 016 en 53 idiomes. Si l'idioma et frena, algú del col·legi pot acompanyar-te a telefonar.",
     schoolTitle: "Dins del col·legi",
@@ -1684,7 +1679,7 @@ window.I18N.en = {
     footerDisclaimer: 'This space offers guidance based on scientific evidence. It does not replace care from a health professional or a psychologist. If you need it, ask for help: doing so is a skill, not a weakness.',
     footerVerified: 'Phone numbers and links checked on:',
     footerBroken: 'Is a link not working? Tell the Guidance Department.',
-    emergencyStrip: 'In immediate danger? Call 112 · Thinking of hurting yourself? Call 024',
+    emergencyStrip: 'In immediate danger? Call 112 · Thinking of hurting yourself? Call 024 · Gender-based violence? Call 016',
     skip: 'Skip to content'
   },
 
@@ -1716,7 +1711,7 @@ window.I18N.en = {
     title: 'Help now',
     calm: 'You did the right thing by looking for help. Breathe. You are not alone.',
     groups: [
-      { title: 'If your life or someone else’s life is in danger now', lines: ['l112', 'l024'] },
+      { title: 'Main helpline numbers (24 h, free)', lines: ['l112', 'l024', 'l016'] },
       { title: 'If you need to talk to someone', lines: ['anar', 'esperanza'] },
       { title: 'If you are at school', school: true }
     ],
@@ -1741,9 +1736,9 @@ window.I18N.en = {
     title: 'Get help',
     intro: 'Asking for help is not overreacting or being a bother. It is a way of looking after yourself. These services are real, free and confidential.',
     groups: [
-      { title: 'Emergency now', icon: '🚨', lines: ['l112', 'l024'] },
+      { title: 'Main helpline numbers (24 h, free)', icon: '🚨', lines: ['l112', 'l024', 'l016'] },
       { title: 'I need to talk to someone', icon: '💬', lines: ['anar', 'esperanza'] },
-      { title: 'Depending on what I’m going through', icon: '🧭', lines: ['acoso', 'incibe', 'l016', 'orienta', 'avalcab', 'pmd'] }
+      { title: 'Depending on what I’m going through', icon: '🧭', lines: ['acoso', 'incibe', 'orienta', 'avalcab', 'pmd'] }
     ],
     langNote: 'Most of these services work in Spanish (many also in Valencian). 112 also answers in English, French and German, and 016 in 53 languages. If language is holding you back, someone at school can go with you to make the call.',
     schoolTitle: 'Inside the school',
@@ -2286,7 +2281,7 @@ window.I18N.fr = {
     footerDisclaimer: "Cet espace propose des informations indicatives fondées sur des preuves scientifiques. Il ne remplace pas l'accompagnement d'un ou d'une professionnelle de santé ou de psychologie. Si tu en as besoin, demande de l'aide : c'est une compétence, pas une faiblesse.",
     footerVerified: "Téléphones et liens vérifiés le :",
     footerBroken: "Un lien ne fonctionne pas ? Préviens le Département d'orientation.",
-    emergencyStrip: "Danger immédiat ? Appelle le 112 · Des pensées de te faire du mal ? Appelle le 024",
+    emergencyStrip: "Danger immédiat ? Appelle le 112 · Des pensées de te faire du mal ? Appelle le 024 · Violences faites aux femmes ? Appelle le 016",
     skip: "Aller au contenu"
   },
 
@@ -2318,7 +2313,7 @@ window.I18N.fr = {
     title: "De l'aide maintenant",
     calm: "Tu as bien fait de chercher de l'aide. Respire. Tu n'es pas seul ni seule.",
     groups: [
-      { title: "Si ta vie ou celle d'une autre personne est en danger maintenant", lines: ['l112', 'l024'] },
+      { title: 'Numéros principaux (24 h/24, gratuits)', lines: ['l112', 'l024', 'l016'] },
       { title: "Si tu as besoin de parler à quelqu'un", lines: ['anar', 'esperanza'] },
       { title: "Si tu es à l'école", school: true }
     ],
@@ -2343,9 +2338,9 @@ window.I18N.fr = {
     title: "Demander de l'aide",
     intro: "Demander de l'aide, ce n'est ni exagérer ni déranger. C'est une façon de prendre soin de toi. Ces services sont réels, gratuits et confidentiels.",
     groups: [
-      { title: "Urgence maintenant", icon: '🚨', lines: ['l112', 'l024'] },
+      { title: 'Numéros principaux (24 h/24, gratuits)', icon: '🚨', lines: ['l112', 'l024', 'l016'] },
       { title: "J'ai besoin de parler à quelqu'un", icon: '💬', lines: ['anar', 'esperanza'] },
-      { title: "Selon ce que je vis", icon: '🧭', lines: ['acoso', 'incibe', 'l016', 'orienta', 'avalcab', 'pmd'] }
+      { title: "Selon ce que je vis", icon: '🧭', lines: ['acoso', 'incibe', 'orienta', 'avalcab', 'pmd'] }
     ],
     langNote: "La plupart de ces services répondent en espagnol (beaucoup aussi en valencien). Le 112 répond aussi en anglais, en français et en allemand, et le 016 en 53 langues. Si la langue te bloque, quelqu'un de l'établissement peut t'accompagner pour appeler.",
     schoolTitle: "Dans l'établissement",
@@ -2888,7 +2883,7 @@ window.I18N.de = {
     footerDisclaimer: 'Dieser Raum bietet Informationen zur Orientierung, die auf wissenschaftlichen Erkenntnissen beruhen. Er ersetzt keine Betreuung durch medizinische oder psychologische Fachleute. Wenn du es brauchst, hol dir Hilfe: Das ist eine Fähigkeit, keine Schwäche.',
     footerVerified: 'Telefonnummern und Links überprüft am:',
     footerBroken: 'Funktioniert ein Link nicht? Gib der Schulberatung (Departamento de Orientación) Bescheid.',
-    emergencyStrip: 'Akute Gefahr? Ruf die 112 an · Gedanken, dir etwas anzutun? Ruf die 024 an',
+    emergencyStrip: 'Akute Gefahr? Ruf die 112 an · Gedanken, dir etwas anzutun? Ruf die 024 an · Gewalt gegen Frauen? Ruf die 016 an',
     skip: 'Zum Inhalt springen'
   },
 
@@ -2920,7 +2915,7 @@ window.I18N.de = {
     title: 'Hilfe jetzt',
     calm: 'Es war richtig, dass du Hilfe suchst. Atme. Du bist nicht allein.',
     groups: [
-      { title: 'Wenn dein Leben oder das eines anderen Menschen gerade in Gefahr ist', lines: ['l112', 'l024'] },
+      { title: 'Wichtigste Nummern (24 h, kostenlos)', lines: ['l112', 'l024', 'l016'] },
       { title: 'Wenn du mit jemandem reden musst', lines: ['anar', 'esperanza'] },
       { title: 'Wenn du in der Schule bist', school: true }
     ],
@@ -2945,9 +2940,9 @@ window.I18N.de = {
     title: 'Hilfe holen',
     intro: 'Hilfe zu holen heißt nicht, zu übertreiben oder zu nerven. Es ist eine Art, für dich zu sorgen. Diese Angebote sind echt, kostenlos und vertraulich.',
     groups: [
-      { title: 'Notfall jetzt', icon: '🚨', lines: ['l112', 'l024'] },
+      { title: 'Wichtigste Nummern (24 h, kostenlos)', icon: '🚨', lines: ['l112', 'l024', 'l016'] },
       { title: 'Ich muss mit jemandem reden', icon: '💬', lines: ['anar', 'esperanza'] },
-      { title: 'Je nachdem, was ich gerade erlebe', icon: '🧭', lines: ['acoso', 'incibe', 'l016', 'orienta', 'avalcab', 'pmd'] }
+      { title: 'Je nachdem, was ich gerade erlebe', icon: '🧭', lines: ['acoso', 'incibe', 'orienta', 'avalcab', 'pmd'] }
     ],
     langNote: 'Die meisten dieser Angebote sind auf Spanisch erreichbar (viele auch auf Valencianisch). Die 112 hilft außerdem auf Englisch, Französisch und Deutsch, die 016 in 53 Sprachen. Wenn die Sprache dich bremst, kann dich jemand von der Schule beim Anrufen begleiten.',
     schoolTitle: 'In der Schule',
@@ -3490,7 +3485,7 @@ window.I18N.ru = {
     footerDisclaimer: 'Здесь собрана информация для ориентира, основанная на научных данных. Она не заменяет помощь медицинского специалиста или психолога. Если нужно, попроси о помощи: это умение, а не слабость.',
     footerVerified: 'Телефоны и ссылки проверены:',
     footerBroken: 'Какая-то ссылка не работает? Сообщи в Departamento de Orientación (школьную службу поддержки).',
-    emergencyStrip: 'Опасность прямо сейчас? Звони 112 · Есть мысли причинить себе вред? Звони 024',
+    emergencyStrip: 'Опасность прямо сейчас? Звони 112 · Есть мысли причинить себе вред? Звони 024 · Насилие в отношении женщин? Звони 016',
     skip: 'Перейти к содержанию'
   },
 
@@ -3522,7 +3517,7 @@ window.I18N.ru = {
     title: 'Помощь сейчас',
     calm: 'Хорошо, что ты ищешь помощь. Дыши. Ты не один и не одна.',
     groups: [
-      { title: 'Если твоя жизнь или жизнь другого человека сейчас в опасности', lines: ['l112', 'l024'] },
+      { title: 'Главные номера (круглосуточно, бесплатно)', lines: ['l112', 'l024', 'l016'] },
       { title: 'Если тебе нужно с кем-то поговорить', lines: ['anar', 'esperanza'] },
       { title: 'Если ты в школе', school: true }
     ],
@@ -3547,9 +3542,9 @@ window.I18N.ru = {
     title: 'Попросить о помощи',
     intro: 'Просить о помощи — не значит преувеличивать или кому-то мешать. Это способ позаботиться о себе. Эти службы настоящие, бесплатные и конфиденциальные.',
     groups: [
-      { title: 'Экстренная ситуация сейчас', icon: '🚨', lines: ['l112', 'l024'] },
+      { title: 'Главные номера (круглосуточно, бесплатно)', icon: '🚨', lines: ['l112', 'l024', 'l016'] },
       { title: 'Мне нужно с кем-то поговорить', icon: '💬', lines: ['anar', 'esperanza'] },
-      { title: 'В зависимости от того, что со мной происходит', icon: '🧭', lines: ['acoso', 'incibe', 'l016', 'orienta', 'avalcab', 'pmd'] }
+      { title: 'В зависимости от того, что со мной происходит', icon: '🧭', lines: ['acoso', 'incibe', 'orienta', 'avalcab', 'pmd'] }
     ],
     langNote: 'Большинство этих служб работают на испанском (многие также на валенсийском). 112 также отвечает на английском, французском и немецком, а 016 — на 53 языках. Если тебя останавливает язык, кто-то из школы может быть рядом, когда ты будешь звонить.',
     schoolTitle: 'В школе',
@@ -4092,7 +4087,7 @@ window.I18N.uk = {
     footerDisclaimer: 'Цей простір пропонує орієнтовну інформацію, що ґрунтується на наукових даних. Він не замінює допомоги медичного працівника чи психолога. Якщо потрібно, попроси про допомогу: це вміння, а не слабкість.',
     footerVerified: 'Телефони й посилання перевірено:',
     footerBroken: 'Якесь посилання не працює? Повідом психологічну службу школи (Departamento de Orientación).',
-    emergencyStrip: 'Безпосередня небезпека? Телефонуй 112 · Думки про те, щоб заподіяти собі шкоду? Телефонуй 024',
+    emergencyStrip: 'Безпосередня небезпека? Телефонуй 112 · Думки про те, щоб заподіяти собі шкоду? Телефонуй 024 · Насильство щодо жінок? Телефонуй 016',
     skip: 'Перейти до вмісту'
   },
 
@@ -4124,7 +4119,7 @@ window.I18N.uk = {
     title: 'Допомога зараз',
     calm: 'Добре, що ти шукаєш допомоги. Дихай. Ти не сам і не сама.',
     groups: [
-      { title: 'Якщо твоє життя або життя іншої людини зараз у небезпеці', lines: ['l112', 'l024'] },
+      { title: 'Головні номери (цілодобово, безкоштовно)', lines: ['l112', 'l024', 'l016'] },
       { title: 'Якщо тобі потрібно з кимось поговорити', lines: ['anar', 'esperanza'] },
       { title: 'Якщо ти в школі', school: true }
     ],
@@ -4149,9 +4144,9 @@ window.I18N.uk = {
     title: 'Попросити про допомогу',
     intro: 'Просити про допомогу — це не перебільшувати й не заважати. Це спосіб подбати про себе. Ці служби справжні, безкоштовні й конфіденційні.',
     groups: [
-      { title: 'Екстрена ситуація зараз', icon: '🚨', lines: ['l112', 'l024'] },
+      { title: 'Головні номери (цілодобово, безкоштовно)', icon: '🚨', lines: ['l112', 'l024', 'l016'] },
       { title: 'Мені треба з кимось поговорити', icon: '💬', lines: ['anar', 'esperanza'] },
-      { title: 'Залежно від того, що я переживаю', icon: '🧭', lines: ['acoso', 'incibe', 'l016', 'orienta', 'avalcab', 'pmd'] }
+      { title: 'Залежно від того, що я переживаю', icon: '🧭', lines: ['acoso', 'incibe', 'orienta', 'avalcab', 'pmd'] }
     ],
     langNote: 'Більшість цих служб відповідають іспанською (багато — також валенсійською). 112 також відповідає англійською, французькою та німецькою, а 016 — 53 мовами. Якщо тобі заважає мовний барʼєр, хтось зі школи може побути поруч, поки ти телефонуєш.',
     schoolTitle: 'У школі',
@@ -4694,7 +4689,7 @@ window.I18N.ar = {
     footerDisclaimer: 'تقدّم هذه المساحة معلومات إرشادية مبنية على الأدلة العلمية. وهي لا تُغني عن رعاية مختص صحي أو مختص في علم النفس. إذا احتجت، اطلب المساعدة: فطلبها مهارة، وليس ضعفاً.',
     footerVerified: 'تمت مراجعة الأرقام والروابط في:',
     footerBroken: 'هل هناك رابط لا يعمل؟ أخبر قسم التوجيه (Departamento de Orientación).',
-    emergencyStrip: 'في خطر فوري؟ اتصل بـ 112 · تراودك أفكار بإيذاء نفسك؟ اتصل بـ 024',
+    emergencyStrip: 'في خطر فوري؟ اتصل بـ 112 · تراودك أفكار بإيذاء نفسك؟ اتصل بـ 024 · عنف ضد المرأة؟ اتصل بـ 016',
     skip: 'الانتقال إلى المحتوى'
   },
 
@@ -4726,7 +4721,7 @@ window.I18N.ar = {
     title: 'المساعدة الآن',
     calm: 'أحسنت بطلبك المساعدة. تنفّس. لست وحدك.',
     groups: [
-      { title: 'إذا كانت حياتك أو حياة شخص آخر في خطر الآن', lines: ['l112', 'l024'] },
+      { title: 'الأرقام الرئيسية (على مدار الساعة، مجانًا)', lines: ['l112', 'l024', 'l016'] },
       { title: 'إذا كنت بحاجة إلى التحدث مع أحد', lines: ['anar', 'esperanza'] },
       { title: 'إذا كنت في المدرسة', school: true }
     ],
@@ -4751,9 +4746,9 @@ window.I18N.ar = {
     title: 'طلب المساعدة',
     intro: 'طلب المساعدة ليس مبالغة ولا إزعاجاً. إنه طريقة للعناية بنفسك. هذه الخدمات حقيقية ومجانية وسرية.',
     groups: [
-      { title: 'طوارئ الآن', icon: '🚨', lines: ['l112', 'l024'] },
+      { title: 'الأرقام الرئيسية (على مدار الساعة، مجانًا)', icon: '🚨', lines: ['l112', 'l024', 'l016'] },
       { title: 'أحتاج إلى التحدث مع أحد', icon: '💬', lines: ['anar', 'esperanza'] },
-      { title: 'حسب ما أمرّ به', icon: '🧭', lines: ['acoso', 'incibe', 'l016', 'orienta', 'avalcab', 'pmd'] }
+      { title: 'حسب ما أمرّ به', icon: '🧭', lines: ['acoso', 'incibe', 'orienta', 'avalcab', 'pmd'] }
     ],
     langNote: 'معظم هذه الخدمات تجيب بالإسبانية (والكثير منها بالبلنسية أيضاً). ويجيب 112 كذلك بالإنجليزية والفرنسية والألمانية، و016 بـ 53 لغة. إذا كانت اللغة عائقاً أمامك، يمكن لشخص من المدرسة أن يرافقك أثناء الاتصال.',
     schoolTitle: 'داخل المدرسة',
@@ -5281,7 +5276,7 @@ window.I18N.ar = {
     esperanza: { nums: [['717 003 717', '717003717']], chat: 'https://telefonodelaesperanza.org' },
     acoso: { nums: [['900 018 018', '900018018']], web: 'https://www.anar.org/en/telefono-chat-del-acoso-escolar/' },
     incibe: { nums: [['017', '017']], wa: 'https://wa.me/34900116117', web: 'https://www.incibe.es/menores/ayuda' },
-    l016: { nums: [['016', '016']], wa: 'https://wa.me/34600000016', web: 'https://violenciagenero.igualdad.gob.es/', mail: '016-online@igualdad.gob.es' },
+    l016: { urgent: true, nums: [['016', '016']], wa: 'https://wa.me/34600000016', web: 'https://violenciagenero.igualdad.gob.es/', mail: '016-online@igualdad.gob.es' },
     orienta: { nums: [['900 10 10 15', '900101015']], mail: 'orienta-vlc@gva.es' },
     avalcab: { nums: [['963 462 120', '963462120']], web: 'https://www.avalcab.org' },
     pmd: { nums: [['962 082 029', '962082029']], web: 'https://www.valencia.es/cas/pmd/contacta-con-nosotros', mail: 'pmdadicciones@valencia.es' }
@@ -5514,17 +5509,13 @@ window.I18N.ar = {
 
   function contactDl(c) {
     var P = T.helpPage.labels, dl = h('dl', { class: 'kv' });
-    [['contactName', P.contact], ['location', P.location], ['hours', P.hours], ['email', P.email], ['phone', P.phone]].forEach(function (f) {
-      var v = cfgVal(c && c[f[0]]);
-      if (!v && f[0] === 'phone') return;
-      var val;
-      if (!v) val = pending();
-      else if (f[0] === 'email') val = h('a', { href: 'mailto:' + v }, v);
-      else if (f[0] === 'phone') val = h('a', { href: 'tel:' + v.replace(/\s/g, '') }, h('span', { class: 'ltr' }, v));
-      else val = v;
-      dl.appendChild(h('dt', null, f[1]));
-      dl.appendChild(h('dd', null, val));
+    var people = (c && c.people) || [];
+    people.forEach(function (p) {
+      dl.appendChild(h('dt', null, P.contact));
+      dl.appendChild(h('dd', null, h('strong', null, p.name), p.email ? [h('br'), h('a', { href: 'mailto:' + p.email }, '✉️ ' + p.email)] : null));
     });
+    if (!people.length) { dl.appendChild(h('dt', null, P.contact)); dl.appendChild(h('dd', null, pending())); }
+    if (cfgVal(c && c.location)) { dl.appendChild(h('dt', null, P.location)); dl.appendChild(h('dd', null, c.location)); }
     return dl;
   }
   function schoolMini() {
@@ -5798,7 +5789,7 @@ window.I18N.ar = {
       var inner = [h('div', { class: 'ic', 'aria-hidden': 'true' }, it.icon), h('h4', null, it.t), h('p', null, it.d)];
       if (it.school === 'pastoral') {
         var P = CFG.pastoral || {};
-        inner.push(h('p', { class: 'small', style: 'margin-top:8px' }, cfgVal(P.contactName) || pending(), cfgVal(P.email) ? [' · ', h('a', { href: 'mailto:' + P.email }, P.email)] : null, cfgVal(P.location) ? ' · ' + P.location : null));
+        if (cfgVal(P.contactName)) inner.push(h('p', { class: 'small', style: 'margin-top:8px' }, P.contactName, cfgVal(P.email) ? [' · ', h('a', { href: 'mailto:' + P.email }, P.email)] : null, cfgVal(P.location) ? ' · ' + P.location : null));
       }
       if (it.url) return ext(it.url, { class: 'ccard' }, inner.concat(h('span', { class: 'small ext', style: 'color:var(--accent-600);font-weight:600;display:inline-block;margin-top:8px' }, T.ui.web)));
       return h('div', { class: 'ccard' }, inner);
@@ -6042,9 +6033,8 @@ window.I18N.ar = {
     var g = h('div', { class: 'grid grid-2' },
       h('div', { class: 'line school-card' }, h('h3', null, '🧭 ' + H.orientacion), contactDl(CFG.orientacion)),
       h('div', { class: 'line school-card' }, h('h3', null, '🛡️ ' + H.bienestar), h('p', { class: 'small muted', style: 'margin:2px 0 4px' }, H.bienestarNote), contactDl(CFG.bienestar)),
-      h('div', { class: 'line school-card' }, h('h3', null, '👩‍🏫 ' + H.tutor), h('p', { class: 'small muted' }, H.tutorNote)),
-      h('div', { class: 'line school-card' }, h('h3', null, '📮 ' + H.buzon), h('p', { class: 'small muted' }, H.buzonText),
-        cfgVal(CFG.buzonUrl) ? ext(CFG.buzonUrl, { class: 'btn btn-sm btn-primary ext' }, H.buzon) : pending()));
+      h('div', { class: 'line school-card' }, h('h3', null, '👩‍🏫 ' + H.tutor), h('p', { class: 'small muted' }, H.tutorNote))
+      );
     sc.appendChild(g);
     m.appendChild(sc);
 
